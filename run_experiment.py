@@ -33,7 +33,6 @@ def run_experiment(experiment_name, beta, threshold, spike_grad_name,
         print(f"Model found for {experiment_name}, skipping training")
         model.load_state_dict(torch.load(model_path, map_location=device))
     else:
-        # обучение
         optimizer = optim.Adam(model.parameters(), lr=lr)
         scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=epochs)
         criterion = nn.CrossEntropyLoss()
