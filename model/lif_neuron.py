@@ -67,5 +67,6 @@ class LIFNeuron(nn.Module):
             self.v = torch.zeros_like(x)
         self.v = self.beta * self.v + x
         spike = self.spike_fn(self.v, self.threshold)
-        self.v = self.v * (1.0 - spike.detach())  # hard reset
+        self.v = self.v * (1.0 - spike.detach())
+        self.last_spike = spike.detach()
         return spike
